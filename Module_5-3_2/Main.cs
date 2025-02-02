@@ -21,15 +21,15 @@ namespace Module_5_3_2
             Document doc = uidoc.Document;
 
             IList<Reference> selectdElement = uidoc.Selection.PickObjects(ObjectType.Element, new PipeFilter(), "Выберите элементы");
-            double sumLENGTH = 0;
+            double sumLength = 0;
             foreach (var selectedElem in selectdElement)
             {
                 Element element = doc.GetElement(selectedElem);
-                sumLENGTH += UnitUtils.ConvertFromInternalUnits(element.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble(), UnitTypeId.Meters);
+                sumLength += UnitUtils.ConvertFromInternalUnits(element.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble(), UnitTypeId.Meters);
 
             }
 
-            TaskDialog.Show("Длина труб", $"Длина труб: {Math.Round(sumLENGTH, 2).ToString()} м.");
+            TaskDialog.Show("Длина труб", $"Длина труб: {Math.Round(sumLength, 2).ToString()} м.");
 
             return Result.Succeeded;
         }
